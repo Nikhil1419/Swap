@@ -1,0 +1,122 @@
+<html lang="en">
+
+<body>
+    
+    <div>
+        <input type="text" id="">
+        <p id= ""></p>
+        <button id="swap"  onClick="swap"> swap</button>
+		<button id="withdraw" onClick="withdraw" > withdraw</button>
+		
+
+       
+
+    </div>
+    <script src= "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" ></script>
+    <script src= "https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+ 
+ 
+     <script>
+
+			
+         
+        		 var contract;
+        		 $(document).ready(function()
+		{
+
+			
+           web3 = new Web3(web3.currentProvider);
+		   const accounts = ethereum.request({
+ 		   method: 'eth_requestAccounts',
+			  });
+            
+             var address = "0xE3d7d1Fd0d9eA59B746D4821B1057D8e6DE7261B";
+             var abi = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_tokenIn",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_tokenOut",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amountIn",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amountOutMin",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_to",
+				"type": "address"
+			}
+		],
+		"name": "swap",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_tokenIn",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_tokenOut",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amountIn",
+				"type": "uint256"
+			}
+		],
+		"name": "getAmountOutMin",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+     
+ 
+             contract = new web3.eth.Contract(abi, address);
+			 const _tokenIn1 = "0x221Bc11f888cf5c6FA2Ab4AfAF6ea1416C3F8ac4"
+			 const _tokenOut1 = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+			 const _tokenIn2 = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+			 const _tokenOut2 = "0x221Bc11f888cf5c6FA2Ab4AfAF6ea1416C3F8ac4"
+
+            
+
+             
+             contract.methods.swap(_tokenIn1, _tokenOut2, 1, 1, "0xf0d614561fe238a50aAa4C0b70eFEe0C9a275A79").send({ from: "0xf0d614561fe238a50aAa4C0b70eFEe0C9a275A79" }) 
+			 contract.methods.getAmountOutMin(_tokenIn2, _tokenOut2, 1).send({from:"0xf0d614561fe238a50aAa4C0b70eFEe0C9a275A79" })
+                
+ 
+ 
+         }
+         )  
+ 
+ 
+     </script>
+ 
+
+</body>
+</html>
